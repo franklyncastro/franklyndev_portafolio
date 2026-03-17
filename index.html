@@ -300,23 +300,24 @@
           💬 Escribir por WhatsApp
         </a>
       </div>
-
-      <form class="contact-form reveal reveal-delay-3" onsubmit="handleSubmit(event)">
+        <form class="contact-form" action="https://api.web3forms.com/submit" method="POST" onsubmit="handleSubmit(event)">
+        <input type="hidden" name="access_key" value="1c954046-e79b-4ac6-9037-4d1ff5f13eec">
+        <input type="hidden" name="subject" value="Nuevo contacto desde tu portafolio">
         <div class="form-row">
-          <input type="text" placeholder="Tu nombre" required>
+            <input type="text" name="name" placeholder="Tu nombre" required>
         </div>
         <div class="form-row">
-          <input type="email" placeholder="Tu email" required>
+            <input type="email" name="email" placeholder="Tu email" required>
         </div>
         <div class="form-row">
-          <input type="text" placeholder="Asunto del proyecto">
+            <input type="text" name="asunto" placeholder="Asunto del proyecto">
         </div>
         <div class="form-row">
-          <textarea placeholder="Cuéntame sobre tu proyecto..."></textarea>
+            <textarea name="message" placeholder="Cuéntame sobre tu proyecto..."></textarea>
         </div>
         <button type="submit" class="btn-submit">Enviar mensaje</button>
         <p id="form-ok">✓ Mensaje enviado. Te contactaré pronto.</p>
-      </form>
+        </form>
     </div>
   </div>
 </section>

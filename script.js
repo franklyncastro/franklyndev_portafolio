@@ -37,11 +37,21 @@ function applyTheme(theme) {
 }
 
 // ── FORM ─────────────────────────────────────────────────────────────────────
-function handleSubmit(e) {
+async function handleSubmit(e) {
   e.preventDefault();
-  document.getElementById('form-ok').style.display = 'block';
-  e.target.reset();
-  setTimeout(() => {
-    document.getElementById('form-ok').style.display = 'none';
-  }, 5000);
+  const form = e.target;
+  const data = new FormData(form);
+
+  const res = await fetch("https://api.web3forms.com/submit", {
+    method: "POST",
+    body: data,
+  });
+
+  if (res.ok) {
+    document.getElementById('form-ok').style.display = 'block';
+    form.reset();
+    setTimeout(() => {
+      document.getElementById('form-ok').style.display = 'none';
+    }, 5000);
+  }
 }
