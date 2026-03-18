@@ -36,6 +36,36 @@ function applyTheme(theme) {
   themeIcon.textContent = theme === 'dark' ? '☽' : '☀';
 }
 
+// ── MODAL CERTIFICADOS ──────────────────────────────────────────────────────
+const modal        = document.getElementById('certModal');
+const modalImg     = document.getElementById('certModalImg');
+const modalTitle   = document.getElementById('certModalTitle');
+const modalClose   = document.getElementById('certModalClose');
+const modalOverlay = document.getElementById('certModalOverlay');
+
+document.querySelectorAll('.cert-view-btn').forEach(btn => {
+  btn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    const card = btn.closest('.cert-card');
+    modalImg.src = card.dataset.cert;
+    modalTitle.textContent = card.dataset.certName;
+    modal.classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+function closeCertModal() {
+  modal.classList.remove('active');
+  document.body.style.overflow = '';
+  setTimeout(() => { modalImg.src = ''; }, 300);
+}
+
+modalClose.addEventListener('click', closeCertModal);
+modalOverlay.addEventListener('click', closeCertModal);
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') closeCertModal();
+});
+
 // ── FORM ─────────────────────────────────────────────────────────────────────
 async function handleSubmit(e) {
   e.preventDefault();
